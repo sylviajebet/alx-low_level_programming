@@ -1,4 +1,4 @@
-#include <stdio.h.
+#include <stdio.h>
 
 /**
   * main - Entry point for program to print 3 digit combos once
