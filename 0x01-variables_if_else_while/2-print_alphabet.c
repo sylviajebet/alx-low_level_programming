@@ -3,7 +3,7 @@
 /**
   * main - Entry point for a program to print the alphabet
   *
-  8 Return: 0 for success
+  * Return: 0 for success
   */
 int main(void)
 {
