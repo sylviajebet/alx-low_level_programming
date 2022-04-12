@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 /**
   * main - Entry point for a program to print _putchar
   *
@@ -15,6 +14,6 @@ int main(void)
 	{
 		_putchar(ptchar[i]);
 	}
-	printf("\n");
+	_putchar('\n');
 	return (0);
 }
