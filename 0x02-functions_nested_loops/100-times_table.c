@@ -38,7 +38,7 @@ void print_times_table(int n)
 				_putchar(tens % 10 + '0');
 				_putchar(ones + '0');
 			}
-			else if (product >= 100 && product < 1000)
+			else if (product > 99 && product < 1000)
 			{
 				_putchar(',');
 				_putchar(' ');
