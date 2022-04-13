@@ -7,7 +7,7 @@
   */
 int main(void)
 {
-	int num, bef = 1, aft = 2, bef1, aft1, bef2, aft2, div = 1000000000;
+	unsigned long int num, bef = 1, aft = 2, bef1, aft1, bef2, aft2, div = 1000000000;
 
 	printf("%lu", bef);
 
