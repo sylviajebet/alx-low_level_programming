@@ -10,7 +10,7 @@ int main(void)
 	unsigned long int sum = 0, sum3 = 0, sum5 = 0;
 	int num;
 
-	for (num = o; num < 1024; num++)
+	for (num = 0; num < 1024; num++)
 	{
 		if ((num % 3) == 0)
 			sum3 += num;
