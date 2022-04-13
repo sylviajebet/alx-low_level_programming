@@ -42,7 +42,7 @@ void print_times_table(int n)
 				_putchar(',');
 				_putchar(' ');
 				_putchar(hundreds % 10 + '0');
-				_putchar(tens % 10 + '0');
+				_putchar(tens + '0');
 				_putchar(ones + '0');
 			}
 		}
