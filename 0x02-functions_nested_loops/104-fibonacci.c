@@ -1,7 +1,8 @@
 #include <stdio.h>
 
 /**
-  * main - Program to print the first 98 fibonacci numbers
+  * main - Program to print the first 98
+  * fibonacci numbers
   *
   * Return: 0 for success
   */
@@ -11,7 +12,7 @@ int main(void)
 
 	printf("%lu", bef);
 
-	for (num = 0; num < 91; num++)
+	for (num = 1; num < 91; num++)
 	{
 		printf(", %lu", aft);
 		aft += bef;
