@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
   * print_times_table - P rogram to print n times table
@@ -40,7 +39,11 @@ void print_times_table(int n)
 			}
 			else if (product > 99 && product < 1000)
 			{
-				fprintf(stderr, ", %i%i%i", hundreds, (tens % 10), ones);
+				_putchar(',');
+				_putchar(' ');
+				_putchar(hundreds % 10 + '0');
+				_putchar(tens % 10 + '0');
+				_putchar(ones + '0');
 			}
 		}
 		_putchar('\n');
