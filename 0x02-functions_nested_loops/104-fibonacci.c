@@ -8,7 +8,8 @@
   */
 int main(void)
 {
-	unsigned long int num, bef = 1, aft = 2, bef1, aft1, bef2, aft2, div = 1000000000;
+	unsigned long int num, bef = 1, aft = 2, bef1, aft1, bef2, aft2;
+	unsigned long int div = 1000000000;
 
 	printf("%lu", bef);
 
@@ -24,7 +25,7 @@ int main(void)
 	aft1 = aft / div;
 	aft2 = aft % div;
 
-	for (num = 91; num < 99; num++)
+	for (num = 92; num < 99; ++num)
 	{
 		printf(", %lu", aft1 + (aft2 / div));
 		printf("%lu", aft2 % div);
