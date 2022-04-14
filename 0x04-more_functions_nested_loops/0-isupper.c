@@ -2,11 +2,10 @@
 
 /**
  * _isupper - Program that checks for uppercase character
- * @c: c is an integer
+ * @c: c is a character
  *
  * Return: 1 for uppercase
  */
-
 int _isupper(int c)
 {
 	int c;
