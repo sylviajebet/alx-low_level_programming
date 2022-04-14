@@ -19,7 +19,7 @@ int main(void)
 		else if (num % 3 == 0)
 			printf("%s", "Fizz");
 		else
-			printf("%i", num);
+			printf("%d", num);
 
 		while (num != 100)
 			printf(" ");
