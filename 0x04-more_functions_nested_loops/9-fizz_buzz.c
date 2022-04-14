@@ -20,7 +20,7 @@ int main(void)
 			printf("%s", "Fizz");
 		else
 			printf("%d", num);
-		while (num != 100)
+		if (num != 100)
 			printf(" ");
 	}
 	printf("\n");
