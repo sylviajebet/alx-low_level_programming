@@ -6,6 +6,7 @@
  *
  * Return: 1 for uppercase
  */
+ 
 int _isupper(int c)
 {
 	int c;
