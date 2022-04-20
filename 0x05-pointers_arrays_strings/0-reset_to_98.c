@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * reset_to_98 - Program to take a pointer and change value to 98
