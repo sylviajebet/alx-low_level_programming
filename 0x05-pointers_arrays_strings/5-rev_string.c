@@ -15,8 +15,6 @@ void rev_string(char *s)
 		count++;
 	}
 
-	j = count + 1;
-
 	for (i = 0; i < (count - 1); i++)
 	{
 		for (j = count + 1; j > 0; j--)
