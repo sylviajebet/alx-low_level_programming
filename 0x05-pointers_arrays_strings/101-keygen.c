@@ -10,13 +10,15 @@
 
 int main(void)
 {
-	int pass, sum;
+	int pass, sum = 0;
+	time_t t;
 
-	srand(time(NULL));
-	sum = 0;
-	while (sum <= 2645)
+	srand((unsigned int) time(&t));
+	while (sum < 2772)
 	{
 		pass = (rand() % 128);
+		if ((sum + pass) > 2772)
+			break;
 		sum += pass;
 		printf("%c", pass);
 	}
