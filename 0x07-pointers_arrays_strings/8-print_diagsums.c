@@ -16,7 +16,7 @@ void print_diagsums(int *a, int size)
 	for (idx = 0; idx < (size * size); idx += size + 1)
 		col += a[idx];
 
-	for (idx = size - 1; idx < (size * size) - 1; idx += size + 1)
+	for (idx = size - 1; idx < (size * size) - 1; idx += size - 1)
 		row += a[idx];
 
 	printf("%d, %d\n", col, row);
