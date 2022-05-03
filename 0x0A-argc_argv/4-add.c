@@ -10,25 +10,27 @@
 
 int main(int argc, char *argv[])
 {
-	int idx, idx2, sum = 0;
+	int idx, idx2 = argc - 1, sum = 0;
 
-	if (argc <= 1)
+	if (argc < 2)
 	{
 		printf("0\n");
 		return (0);
 	}
-	for (idx = 1; idx < argc; idx++)
+
+	for (; atoi(argv[idx2]); idx2--)
 	{
-		for (idx2 = 0; argv[idx][idx2]; idx2++)
+		idx = atoi(argv[idx2]);
+
+		if (idx == 0)
 		{
-			if (argv[idx][idx2] < '0' || argv[idx][idx] > '9')
-			{
-				printf("Error\n");
-				return (1);
-			}
+			printf("Error\n");
+			return (1);
 		}
-		sum += atoi(argv[idx]);
+		sum += idx;
 	}
+
 	printf("%d\n", sum);
+
 	return (0);
 }
