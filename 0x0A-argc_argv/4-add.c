@@ -10,7 +10,7 @@
 
 int main(int argc, char *argv[])
 {
-	int idx = argc - 1, sum = 0, val = 0;
+	int idx, idx2 = argc - 1, sum = 0;
 
 	if (argc < 2)
 	{
@@ -18,19 +18,16 @@ int main(int argc, char *argv[])
 		return (0);
 	}
 
-	while (argc > 0)
+	for (; idx2; idx2--)
 	{
-		for (i = 0; argv[argc][idx]; i++)
+		idx = atoi(argv[idx2]);
+
+		if (idx == 0)
 		{
-			if (!(isdigit(argv[argc][idx])))
-			{
-				printf("Error\n");
-				return (1);
-			}
+			printf("Error\n");
+			return (1);
 		}
-		val = atoi(argv[argc]);
-		sum += val;
-        argc--;
+		sum += idx;
 	}
 
 	printf("%d\n", sum);
