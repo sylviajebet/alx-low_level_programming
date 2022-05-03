@@ -7,7 +7,7 @@
  * Return: 0 for success
  **/
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
 	while (argc--)
 		printf("%s\n", *argv++);
