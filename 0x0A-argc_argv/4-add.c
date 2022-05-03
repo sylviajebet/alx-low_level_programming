@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 		return (0);
 	}
 
-	for (; atoi(argv[idx2]); idx2--)
+	for (; idx2; idx2--)
 	{
 		idx = atoi(argv[idx2]);
 
