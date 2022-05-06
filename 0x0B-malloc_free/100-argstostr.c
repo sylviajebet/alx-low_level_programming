@@ -37,6 +37,5 @@ char *argstostr(int ac, char **av)
 		str_copy[count] = '\n';
 		count++;
 	}
-	str_copy[count] = '\0';
 	return (str_copy);
 }
