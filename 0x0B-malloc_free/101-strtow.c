@@ -2,23 +2,6 @@
 #include <stdlib.h>
 
 /**
- * rec_word_count - Function to count words recursively
- *
- * @str: Pointer to array of characters
- * @idx: Integer value for index
- * Return: Int for number of words
- */
-
-int rec_word_count(char *str, int idx)
-{
-	if (str[idx] == '\0')
-		return (0);
-	if (str[idx + 1] && str[idx] == ' ' && str[idx + 1] != ' ')
-		return (rec_word_count(str, idx + 1) + 1);
-	return (rec_word_count(str, idx + 1));
-}
-
-/**
  * word_count - Function to count number of words
  *
  * @str: Pointer to string to count
