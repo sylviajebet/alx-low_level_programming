@@ -22,8 +22,9 @@ char *argstostr(int ac, char **av)
 			size++;
 		size++;
 	}
+	size++;
 
-	str_copy = malloc((sizeof(char) * size) + 1);
+	str_copy = malloc(sizeof(char) * size);
 	if (str_copy == NULL)
 		return (NULL);
 	for (idx = 0; idx < ac; idx++)
