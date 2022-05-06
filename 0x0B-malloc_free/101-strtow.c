@@ -27,9 +27,20 @@ int rec_word_count(char *str, int idx)
 
 int word_count(char *str)
 {
-	if (str[0] != ' ')
-		return (rec_word_count(str, 0) + 1);
-	return (rec_word_count(str, 0));
+	int idx = 0, words = 0, check = 0;
+
+	while (str[idx])
+	{
+		if (str[idx] == ' ')
+			check = 0;
+		else if (check == 0)
+		{
+			check = 1;
+			words++;
+		}
+		idx++;
+	}
+	return (words);
 }
 
 /**
@@ -41,43 +52,44 @@ int word_count(char *str)
 
 char **strtow(char *str)
 {
-	char **str_copy;
-	int idx = 0, idx2 = 0, idx3 = 0, count;
+	char *tmp_str, **str_copy;
+	int idx, idx2 = 0, start, end, count = 0, str_len = 0, w_count;
 
-	if (str == NULL || str[0] == '\0')
+	while (*(str + str_len))
+		str_len++;
+	w_count = word_count(str);
+	if (w_count == 0)
 		return (NULL);
-	count = word_count(str);
-	if (count < 1)
-		return (NULL);
-	count++;
-	str_copy = malloc(sizeof(char *) * count);
+	w_count++;
+
+	str_copy = (char **) malloc(sizeof(char *) * w_count);
 	if (str_copy == NULL)
 		return (NULL);
-	while (idx < count && *str)
+
+	for (idx = 0; idx <= str_len; idx++)
 	{
-		if (*str != ' ')
+		if (str[idx] == ' ' || str[idx] == '\0')
 		{
-			while (str[idx2] != ' ')
+			if (count)
+			{
+				end = idx;
+				count++;
+				tmp_str = (char *) malloc(sizeof(char) * count);
+				if (tmp_str == NULL)
+					return (NULL);
+				while (start < end)
+					*tmp_str++ = str[start++];
+				*tmp_str = '\0';
+				str_copy[idx2] = tmp_str - count;
 				idx2++;
-			idx2++;
-			str_copy[idx] = malloc(sizeof(char) * idx2);
-			if (!str_copy[idx])
-			{
-				while (--idx >= 0)
-					free(str_copy[--idx]);
-				free(str_copy);
-				return (NULL);
+				count = 0;
 			}
-			for (idx3 = 0; idx3 < idx2; idx3++)
-			{
-				str_copy[idx][idx3] = *str;
-				str++;
-			}
-			str_copy[idx][idx3] = '\0';
-			idx++;
 		}
-		str++;
+		else if (count++ == 0)
+			start = idx;
 	}
-	str_copy[idx] = '\0';
+
+	str_copy[idx2] = NULL;
+
 	return (str_copy);
 }
