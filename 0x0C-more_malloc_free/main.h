@@ -9,5 +9,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void _putchar(char);
 char *_memset(char *s, char b, unsigned int n);
 void *_calloc(unsigned int nmemb, unsigned int size);
+int main(int argc, char *argv[]);
 
 #endif
