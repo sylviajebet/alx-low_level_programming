@@ -20,7 +20,7 @@ void print_all(const char * const format, ...)
 		switch (format[i])
 		{
 			case 'c':
-				printf("%s%d", separator, (char)va_arg(ap, unsigned int));
+				printf("%s%c", separator, (char)va_arg(ap, unsigned int));
 				break;
 			case 'i':
 				printf("%s%d", separator, va_arg(ap, unsigned int));
