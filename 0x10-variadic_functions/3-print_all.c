@@ -1,6 +1,5 @@
 #include "variadic_functions.h"
 #include <stdio.h>
-#include <stdlib.h>
 
 /**
  * print_all - Function that prints anything
@@ -23,10 +22,10 @@ void print_all(const char * const format, ...)
 			switch (format[i])
 			{
 				case 'c':
-					printf("%s%c", separator, va_arg(ap, unsigned int));
+					printf("%s%c", separator, va_arg(ap, int));
 					break;
 				case 'i':
-					printf("%s%d", separator, va_arg(ap, unsigned int));
+					printf("%s%d", separator, va_arg(ap, int));
 					break;
 				case 'f':
 					printf("%s%f", separator, va_arg(ap, double));
