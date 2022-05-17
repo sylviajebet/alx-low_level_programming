@@ -6,7 +6,7 @@
  */
 void char_print(va_list ap)
 {
-	printf("%c", va_arg(ap, unsigned int));
+	printf("%c", va_arg(ap, int));
 }
 /**
  * int_print - Function to print an int
@@ -14,7 +14,7 @@ void char_print(va_list ap)
  */
 void int_print(va_list ap)
 {
-	printf("%d", va_arg(ap, unsigned int));
+	printf("%d", va_arg(ap, int));
 }
 /**
  * float_print - Function to print a float
@@ -56,7 +56,8 @@ void print_all(const char * const format, ...)
 	va_start(ap, format);
 	while (format && format[i])
 	{
-		while (idx < 4)
+		idx = 0;
+		while (idx <= 3)
 		{
 			if (*arg[idx].strct == format[i])
 			{
