@@ -1,50 +1,73 @@
 #include "variadic_functions.h"
 #include <stdio.h>
+/**
+ * char_print - Function to print a character
+ * @ap: Argument from print_all
+ */
+void char_print(va_list ap)
+{
+	printf("%c", va_arg(ap, unsigned int));
+}
+/**
+ * int_print - Function to print an int
+ * @ap: Argument from print_all
+ */
+void int_print(va_list ap)
+{
+	printf("%d", va_arg(ap, unsigned int));
+}
+/**
+ * float_print - Function to print a float
+ * @ap: Argument from print_all
+ */
+void float_print(va_list ap)
+{
+	printf("%f", va_arg(ap, double));
+}
+/**
+ * str_print - Function to print a string
+ * @ap: Argument from print_all
+ */
+void str_print(va_list ap)
+{
+	char *str = va_arg(ap, char *);
 
+	if (str == NULL)
+		str = "(nil)";
+	printf("%s", str);
+}
 /**
  * print_all - Function that prints anything
- *
  * @format: List of types of arguments passed to the function
- * Return: Void
  */
-
 void print_all(const char * const format, ...)
 {
 	va_list ap;
-	unsigned int i = 0;
-	char *separator = "", *str;
+	unsigned int i = 0, idx = 0;
+	char *separator = "";
 
+	arg_type arg[] = {
+		{"c", char_print},
+		{"i", int_print},
+		{"f", float_print},
+		{"s", str_print},
+		{NULL, NULL}
+	};
 	va_start(ap, format);
-	if (format)
+	while (format && format[i])
 	{
-		while (format[i])
+		while (idx < 4)
 		{
-			switch (format[i])
+			if (*arg[idx].strct == format[i])
 			{
-				case 'c':
-					printf("%s%c", separator, va_arg(ap, int));
-					break;
-				case 'i':
-					printf("%s%d", separator, va_arg(ap, int));
-					break;
-				case 'f':
-					printf("%s%f", separator, va_arg(ap, double));
-					break;
-				case 's':
-					printf("%s", separator);
-					str = va_arg(ap, char *);
-					if (str == NULL)
-						printf("(nil)");
-					else
-						printf("%s", str);
-					break;
-				default:
-					i++;
-					continue;
+				printf("%s", separator);
+				arg[idx].arg_struct(ap);
+				separator = ", ";
+				break;
 			}
-			separator = ", ";
-			i++;
+			idx++;
 		}
+		i++;
 	}
 	printf("\n");
 	va_end(ap);
