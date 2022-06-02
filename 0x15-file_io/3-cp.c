@@ -1,60 +1,21 @@
 #include "main.h"
 /**
  * error_type - Function to state error type
- * @err_num: Error number
- * @filename: Name of file
+ * @file1: File from
+ * @file2: File to
+ * @av: Argument vector
  */
-void error_type(int err_num, char *filename)
+void error_type(int file1, int file2, char *av[])
 {
-	if (err_num == 98)
+	if (file1 == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
-		exit(err_num);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
+		exit(98);
 	}
-	if (err_num == 99)
+	if (file2 == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
-		exit(err_num);
-	}
-}
-/**
-* cp_file - Function to copy a file to another
- * @file_from: File to copy content from
- * @file_to: File to copy content to
- * Return: Void
- */
-void cp_file(char *file_from, char *file_to)
-{
-	int from_read, from_write, to_read, to_write;
-	char buf[1024];
-
-	from_read = open(file_from, O_RDONLY);
-	if (from_read == -1)
-		error_type(98, file_from);
-	from_write = open(file_to, O_CREAT | O_TRUNC | O_WRONLY, 0064);
-	if (from_write == -1)
-	{
-		close(from_read);
-		error_type(99, file_to);
-	}
-	do {
-		to_read = read(from_read, buf, 1024);
-		if (to_read < 0)
-			error_type(98, file_from);
-		to_write = write(from_write, buf, to_read);
-		if (to_write < to_read)
-			error_type(99, file_to);
-	}	while (to_write == 1024);
-	if (close(from_read) != 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close file %i\n", from_read);
-		close(from_write);
-		exit(100);
-	}
-	if (close(from_write) != 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close file %i\n", from_write);
-		exit(100);
+		dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", av[2]);
+		exit(99);
 	}
 }
 /**
@@ -65,11 +26,40 @@ void cp_file(char *file_from, char *file_to)
  */
 int main(int argc, char *argv[])
 {
+	int file_from, file_to;
+	ssize_t val, num;
+	char buf[1024];
+
 	if (argc != 3)
 	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
 		exit(97);
 	}
-	cp_file(argv[1], argv[2]);
+	file_from = open(argv[1], O_RDONLY);
+	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
+	error_type(file_from, file_to, argv);
+
+	val = 1024;
+	while (val == 1024)
+	{
+		val = read(file_from, buf, 1024);
+		if (val == -1)
+			error_type(-1, 0, argv);
+		num = write(file_to, buf, val);
+		if (num == -1)
+			error_type(0, -1, argv);
+	}
+
+	if (close(file_from) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+		exit(100);
+	}
+
+	if (close(file_to) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+		exit(100);
+	}
 	return (0);
 }
